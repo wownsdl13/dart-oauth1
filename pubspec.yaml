@@ -10,5 +10,7 @@ environment:
 dependencies:
   crypto: ^2.0.5
   http: ^0.11.3+16
-  unittest: ^0.11.7
   uuid: ^1.0.0
+
+dev_dependencies:
+  test: ^1.0.0

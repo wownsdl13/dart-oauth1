@@ -1,6 +1,6 @@
 library authorization_test;
 
-import 'package:unittest/unittest.dart';
+import 'package:test/test.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth1/oauth1.dart';
 
