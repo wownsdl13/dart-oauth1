@@ -1,8 +1,14 @@
 name: oauth1
-version: 0.3.1
-description: A pub package of OAuth 1.0 (RFC 5849) library.
+version: 1.0.1
+description: "\"RFC 5849: The OAuth 1.0 Protocol\" client implementation for Dart."
+homepage: https://github.com/nbspou/dart-oauth1
+author: kumar8600 <kumar1@hotmail.co.jp>
+
+environment:
+  sdk: '>=2.0.0-dev.58.0 <3.0.0'
+
 dependencies:
-  crypto: any
-  http: any
-  unittest: any
-  uuid: any
+  crypto: ^2.0.5
+  http: ^0.11.3+16
+  unittest: ^0.11.7
+  uuid: ^1.0.0
