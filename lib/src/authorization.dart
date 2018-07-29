@@ -36,7 +36,7 @@ class Authorization {
    *
    * If not callbackURI passed, authentication becomes PIN-based.
    */
-  Future<AuthorizationResponse> requestTemporaryCredentials([String callbackURI]) {
+  Future<AuthorizationResponse> requestTemporaryCredentials([String callbackURI]) async {
     if (callbackURI == null) {
       callbackURI = 'oob';
     }
@@ -50,18 +50,20 @@ class Authorization {
     ahb.url = _platform.temporaryCredentialsRequestURI;
     ahb.additionalParameters = additionalParams;
 
-    return _httpClient.post(_platform.temporaryCredentialsRequestURI, headers: {
+    http.Response res = await _httpClient.post(_platform.temporaryCredentialsRequestURI, headers: {
       'Authorization': ahb.build().toString()
-    }).then((res) {
-      if ((res as http.Response).statusCode != 200) {
-        throw new StateError(res.body);
-      }
-      Map<String, String> params = Uri.splitQueryString(res.body);
-      if (params['oauth_callback_confirmed'].toLowerCase() != 'true') {
-        throw new StateError("oauth_callback_confirmed must be true");
-      }
-      return new AuthorizationResponse.fromMap(params);
     });
+
+    if (res.statusCode != 200) {
+      throw new StateError(res.body);
+    }
+
+    Map<String, String> params = Uri.splitQueryString(res.body);
+    if (params['oauth_callback_confirmed'].toLowerCase() != 'true') {
+      throw new StateError("oauth_callback_confirmed must be true");
+    }
+
+    return new AuthorizationResponse.fromMap(params);
   }
 
   /**
@@ -76,7 +78,7 @@ class Authorization {
    * Obtain a set of token credentials from the server.
    * http://tools.ietf.org/html/rfc5849#section-2.3
    */
-  Future<AuthorizationResponse> requestTokenCredentials(Credentials tokenCredentials, String verifier) {
+  Future<AuthorizationResponse> requestTokenCredentials(Credentials tokenCredentials, String verifier) async {
     Map<String, String> additionalParams = {
       'oauth_verifier': verifier
     };
@@ -88,14 +90,14 @@ class Authorization {
     ahb.url = _platform.tokenCredentialsRequestURI;
     ahb.additionalParameters = additionalParams;
 
-    return _httpClient.post(_platform.tokenCredentialsRequestURI, headers: {
+    http.Response res = await _httpClient.post(_platform.tokenCredentialsRequestURI, headers: {
       'Authorization': ahb.build().toString()
-    }).then((res) {
-      if ((res as http.Response).statusCode != 200) {
-        throw new StateError(res.body);
-      }
-      Map<String, String> params = Uri.splitQueryString(res.body);
-      return new AuthorizationResponse.fromMap(params);
     });
+
+    if (res.statusCode != 200) {
+      throw new StateError(res.body);
+    }
+    Map<String, String> params = Uri.splitQueryString(res.body);
+    return new AuthorizationResponse.fromMap(params);
   }
 }
