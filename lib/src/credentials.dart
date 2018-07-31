@@ -19,8 +19,8 @@ class Credentials {
     }
     return new Credentials(parameters['oauth_token'], parameters['oauth_token_secret']);
   }
-  factory Credentials.fromJSON(String json) {
-    return new Credentials.fromMap(JSON.decode(json));
+  factory Credentials.fromJSON(String jstr) {
+    return new Credentials.fromMap(json.decode(jstr));
   }
 
   String get token => _token;

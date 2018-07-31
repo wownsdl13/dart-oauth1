@@ -1,6 +1,6 @@
 library authorization_header;
 
-import 'package:uuid/uuid.dart';
+// import 'package:uuid/uuid.dart';
 
 import 'signature_method.dart';
 import 'client_credentials.dart';
@@ -18,7 +18,7 @@ class AuthorizationHeader {
   final String _url;
   final Map<String, String> _additionalParameters;
 
-  static final _uuid = new Uuid();
+  // static final _uuid = new Uuid();
 
   AuthorizationHeader(this._signatureMethod, this._clientCredentials, this._credentials, this._method, this._url, this._additionalParameters);
 

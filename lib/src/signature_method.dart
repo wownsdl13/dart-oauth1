@@ -35,7 +35,7 @@ abstract class SignatureMethods {
     // The output of the HMAC signing function is a binary
     // string. This needs to be base64 encoded to produce
     // the signature string.
-    return BASE64.encode(bytes);
+    return base64.encode(bytes);
   });
 
   /// http://tools.ietf.org/html/rfc5849#section-3.4.3
