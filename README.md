@@ -1,4 +1,4 @@
-dart-oauth1
+OAuth1
 ===========
 
 [![Build Status](https://travis-ci.org/nbspou/dart-oauth1.svg?branch=fork/nbspou)](https://travis-ci.org/nbspou/dart-oauth1)
