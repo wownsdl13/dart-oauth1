@@ -10,7 +10,11 @@ class Platform {
   final String _tokenCredentialsRequestURI;
   final SignatureMethod _signatureMethod;
 
-  Platform(this._temporaryCredentialsRequestURI, this._resourceOwnerAuthorizationURI, this._tokenCredentialsRequestURI, this._signatureMethod);
+  Platform(
+      this._temporaryCredentialsRequestURI,
+      this._resourceOwnerAuthorizationURI,
+      this._tokenCredentialsRequestURI,
+      this._signatureMethod);
 
   /// Temporary Credentials Request URI
   /// http://tools.ietf.org/html/rfc5849#section-2.1

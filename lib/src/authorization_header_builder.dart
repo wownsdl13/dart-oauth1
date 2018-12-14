@@ -15,20 +15,21 @@ class AuthorizationHeaderBuilder {
   Map<String, String> _additionalParameters;
 
   AuthorizationHeaderBuilder();
-  AuthorizationHeaderBuilder.from(AuthorizationHeaderBuilder other) :
-    _signatureMethod = other._signatureMethod,
-    _clientCredentials = other._clientCredentials,
-    _credentials = other._credentials,
-    _method = other._method,
-    _url = other._url,
-    _additionalParameters = other._additionalParameters;
+  AuthorizationHeaderBuilder.from(AuthorizationHeaderBuilder other)
+      : _signatureMethod = other._signatureMethod,
+        _clientCredentials = other._clientCredentials,
+        _credentials = other._credentials,
+        _method = other._method,
+        _url = other._url,
+        _additionalParameters = other._additionalParameters;
 
   set signatureMethod(SignatureMethod value) => _signatureMethod = value;
   set clientCredentials(ClientCredentials value) => _clientCredentials = value;
   set credentials(Credentials value) => _credentials = value;
   set method(String value) => _method = value;
   set url(String value) => _url = value;
-  set additionalParameters(Map<String, String> value) => _additionalParameters = value;
+  set additionalParameters(Map<String, String> value) =>
+      _additionalParameters = value;
 
   AuthorizationHeader build() {
     if (_signatureMethod == null) {
@@ -43,6 +44,7 @@ class AuthorizationHeaderBuilder {
     if (_url == null) {
       throw StateError('url is not set');
     }
-    return AuthorizationHeader(_signatureMethod, _clientCredentials, _credentials, _method, _url, _additionalParameters);
+    return AuthorizationHeader(_signatureMethod, _clientCredentials,
+        _credentials, _method, _url, _additionalParameters);
   }
 }

@@ -22,8 +22,9 @@ class Client extends http.BaseClient {
   ///
   /// If you want to use in web browser, pass http.BrowserClient object for httpClient.
   /// https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/http/http-browser_client.BrowserClient
-  Client(this._signatureMethod, this._clientCredentials, this._credentials, [http.BaseClient httpClient]) :
-    _httpClient = httpClient != null ? httpClient : http.Client();
+  Client(this._signatureMethod, this._clientCredentials, this._credentials,
+      [http.BaseClient httpClient])
+      : _httpClient = httpClient != null ? httpClient : http.Client();
 
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) {
@@ -41,7 +42,8 @@ class Client extends http.BaseClient {
     if (headers.containsKey('content-type') &&
         headers['content-type'].contains('application/x-www-form-urlencoded') &&
         (request as http.Request).body != null) {
-      additionalParameters.addAll(Uri.splitQueryString((request as http.Request).body));
+      additionalParameters
+          .addAll(Uri.splitQueryString((request as http.Request).body));
     }
     ahb.additionalParameters = additionalParameters;
 
