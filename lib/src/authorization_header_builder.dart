@@ -5,9 +5,7 @@ import 'signature_method.dart';
 import 'client_credentials.dart';
 import 'credentials.dart';
 
-/**
- * A builder class for AuthorizationHeader.
- */
+/// A builder class for AuthorizationHeader
 class AuthorizationHeaderBuilder {
   SignatureMethod _signatureMethod;
   ClientCredentials _clientCredentials;
@@ -34,17 +32,17 @@ class AuthorizationHeaderBuilder {
 
   AuthorizationHeader build() {
     if (_signatureMethod == null) {
-      throw new StateError("signatureMethod is not set");
+      throw StateError('signatureMethod is not set');
     }
     if (_clientCredentials == null) {
-      throw new StateError("clientCredentials is not set");
+      throw StateError('clientCredentials is not set');
     }
     if (_method == null) {
-      throw new StateError("method is not set");
+      throw StateError('method is not set');
     }
     if (_url == null) {
-      throw new StateError("url is not set");
+      throw StateError('url is not set');
     }
-    return new AuthorizationHeader(_signatureMethod, _clientCredentials, _credentials, _method, _url, _additionalParameters);
+    return AuthorizationHeader(_signatureMethod, _clientCredentials, _credentials, _method, _url, _additionalParameters);
   }
 }

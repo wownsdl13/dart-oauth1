@@ -1,8 +1,6 @@
 library client_credentials;
 
-/**
- * A class describing OAuth client credentials.
- */
+/// A class describing OAuth client credentials.
 class ClientCredentials {
   final String _token;
   final String _tokenSecret;

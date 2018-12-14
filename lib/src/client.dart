@@ -8,37 +8,33 @@ import 'client_credentials.dart';
 import 'credentials.dart';
 import 'authorization_header_builder.dart';
 
-/**
- * A proxy class describing OAuth 1.0 Authenticated Request
- * http://tools.ietf.org/html/rfc5849#section-3
- *
- * If _credentials is null, this is usable for authorization requests too.
- */
+/// A proxy class describing OAuth 1.0 Authenticated Request
+/// http://tools.ietf.org/html/rfc5849#section-3
+///
+/// If _credentials is null, this is usable for authorization requests too.
 class Client extends http.BaseClient {
   final SignatureMethod _signatureMethod;
   final ClientCredentials _clientCredentials;
   final Credentials _credentials;
   final http.BaseClient _httpClient;
 
-  /**
-   * A constructor of Client.
-   *
-   * If you want to use in web browser, pass http.BrowserClient object for httpClient.
-   * https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/http/http-browser_client.BrowserClient
-   */
+  /// A constructor of Client.
+  ///
+  /// If you want to use in web browser, pass http.BrowserClient object for httpClient.
+  /// https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/http/http-browser_client.BrowserClient
   Client(this._signatureMethod, this._clientCredentials, this._credentials, [http.BaseClient httpClient]) :
-    _httpClient = httpClient != null ? httpClient : new http.Client();
+    _httpClient = httpClient != null ? httpClient : http.Client();
 
   @override
   Future<http.StreamedResponse> send(http.BaseRequest request) {
-    var ahb = new AuthorizationHeaderBuilder();
+    final AuthorizationHeaderBuilder ahb = AuthorizationHeaderBuilder();
     ahb.signatureMethod = _signatureMethod;
     ahb.clientCredentials = _clientCredentials;
     ahb.credentials = _credentials;
     ahb.method = request.method;
     ahb.url = request.url.toString();
-    var headers = request.headers;
-    Map<String, String> additionalParameters = new Map<String, String>();
+    final Map<String, String> headers = request.headers;
+    Map<String, String> additionalParameters = <String, String>{};
     if (headers.containsKey('Authorization')) {
       additionalParameters = Uri.splitQueryString(headers['Authorization']);
     }
