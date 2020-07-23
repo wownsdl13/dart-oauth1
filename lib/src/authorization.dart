@@ -25,7 +25,7 @@ class Authorization {
   /// https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/http/http-browser_client.BrowserClient
   Authorization(this._clientCredentials, this._platform,
       [http.BaseClient httpClient])
-      : _httpClient = httpClient != null ? httpClient : http.Client();
+      : _httpClient = httpClient ?? http.Client();
 
   /// Obtain a set of temporary credentials from the server.
   /// http://tools.ietf.org/html/rfc5849#section-2.1
@@ -53,7 +53,7 @@ class Authorization {
     }
 
     final Map<String, String> params = Uri.splitQueryString(res.body);
-    String confirmed = params['oauth_callback_confirmed'].toLowerCase();
+    final String confirmed = params['oauth_callback_confirmed'].toLowerCase();
     if (confirmed != 'true' && confirmed != '1') {
       throw StateError('oauth_callback_confirmed must be true');
     }

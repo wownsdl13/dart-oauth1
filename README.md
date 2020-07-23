@@ -63,9 +63,8 @@ void main() {
     print("Your screen name is " + res.optionalParameters['screen_name']);
   });
 }
-
 ```
 
 In addition, You should save and load the granted token credentials from your drive. Of cource, you don't need to authorize when you did it.
 
-[rfc5849]: http://tools.ietf.org/html/rfc5849
+[rfc5849]: https://tools.ietf.org/html/rfc5849
