@@ -53,7 +53,8 @@ class Authorization {
     }
 
     final Map<String, String> params = Uri.splitQueryString(res.body);
-    if (params['oauth_callback_confirmed'].toLowerCase() != 'true') {
+    String confirmed = params['oauth_callback_confirmed'].toLowerCase();
+    if (confirmed != 'true' && confirmed != '1') {
       throw StateError('oauth_callback_confirmed must be true');
     }
 
