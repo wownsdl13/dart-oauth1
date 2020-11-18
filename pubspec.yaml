@@ -1,5 +1,5 @@
 name: oauth1
-version: 1.0.5
+version: 1.0.6
 description: "\"RFC 5849: The OAuth 1.0 Protocol\" client implementation for Dart."
 homepage: https://github.com/nbspou/dart-oauth1
 author: kumar8600 <kumar1@hotmail.co.jp>

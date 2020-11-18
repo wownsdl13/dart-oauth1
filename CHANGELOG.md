@@ -1,4 +1,7 @@
 ## 1.0.5
+- Fixed parameter encoding
+
+## 1.0.5
 - Allow `oauth_callback_confirmed=1` in addition to `oauth_callback_confirmed=true`
 - Add example
 
