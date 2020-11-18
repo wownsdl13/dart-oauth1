@@ -1,4 +1,4 @@
-## 1.0.5
+## 1.0.6
 - Fixed parameter encoding
 
 ## 1.0.5
