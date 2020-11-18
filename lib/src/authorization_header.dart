@@ -1,10 +1,10 @@
 library authorization_header;
 
+import 'client_credentials.dart';
+import 'credentials.dart';
 // import 'package:uuid/uuid.dart';
 
 import 'signature_method.dart';
-import 'client_credentials.dart';
-import 'credentials.dart';
 
 /// A class describing Authorization Header.
 /// http://tools.ietf.org/html/rfc5849#section-3.5.1
@@ -60,6 +60,15 @@ class AuthorizationHeader {
     return authHeader;
   }
 
+  String _encodeParam(String param) {
+    return Uri.encodeComponent(param)
+        .replaceAll('!', '%21')
+        .replaceAll('*', '%2A')
+        .replaceAll("'", '%27')
+        .replaceAll('(', '%28')
+        .replaceAll(')', '%29');
+  }
+
   /// Create signature in ways referred from
   /// https://dev.twitter.com/docs/auth/creating-signature.
   String _createSignature(
@@ -78,10 +87,10 @@ class AuthorizationHeader {
     //    that will be signed.
     final Map<String, String> encodedParams = <String, String>{};
     params.forEach((String k, String v) {
-      encodedParams[Uri.encodeComponent(k)] = Uri.encodeComponent(v);
+      encodedParams[_encodeParam(k)] = _encodeParam(v);
     });
     uri.queryParameters.forEach((String k, String v) {
-      encodedParams[Uri.encodeComponent(k)] = Uri.encodeComponent(v);
+      encodedParams[_encodeParam(k)] = _encodeParam(v);
     });
     params.remove('realm');
 
