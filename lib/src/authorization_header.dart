@@ -60,6 +60,12 @@ class AuthorizationHeader {
     return authHeader;
   }
 
+  /// Percent-encodes the [param].
+  ///
+  /// All characters except uppercase and lowercase letters, digits and the
+  /// characters `-_.~`  are percent-encoded.
+  ///
+  /// See https://oauth.net/core/1.0a/#encoding_parameters.
   String _encodeParam(String param) {
     return Uri.encodeComponent(param)
         .replaceAll('!', '%21')
