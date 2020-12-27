@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   crypto: ^2.0.0
-  http: '>=0.11.0 < 0.13.0'
+  http: '>=0.11.0 <0.13.0'
 
 dev_dependencies:
   test: ^1.0.0
