@@ -1,8 +1,8 @@
 library authorization_test;
 
-import 'package:test/test.dart';
 import 'package:http/http.dart' as http;
 import 'package:oauth1/oauth1.dart';
+import 'package:test/test.dart';
 
 void main() {
   final Platform twitter1_1 = Platform(
@@ -16,8 +16,8 @@ void main() {
       ClientCredentials(apiKey, apiSecret);
 
   test('request temporary credentials', () {
-    final Authorization auth =
-        Authorization(clientCredentials, twitter1_1, http.Client());
+    final Authorization auth = Authorization(
+        clientCredentials, twitter1_1, http.Client() as http.BaseClient?);
     return auth.requestTemporaryCredentials();
   });
 }

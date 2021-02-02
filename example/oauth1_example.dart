@@ -32,7 +32,7 @@ void main() {
 
     // get verifier (PIN)
     stdout.write('PIN: ');
-    final String verifier = stdin.readLineSync();
+    final String verifier = stdin.readLineSync() ?? '';
 
     // request token credentials (access tokens)
     return auth.requestTokenCredentials(res.credentials, verifier);
@@ -51,6 +51,6 @@ void main() {
     });
 
     // NOTE: you can get optional values from AuthorizationResponse object
-    print('Your screen name is ' + res.optionalParameters['screen_name']);
+    print('Your screen name is ' + res.optionalParameters['screen_name']!);
   });
 }

@@ -7,12 +7,12 @@ import 'signature_method.dart';
 
 /// A builder class for AuthorizationHeader
 class AuthorizationHeaderBuilder {
-  SignatureMethod _signatureMethod;
-  ClientCredentials _clientCredentials;
-  Credentials _credentials;
-  String _method;
-  String _url;
-  Map<String, String> _additionalParameters;
+  SignatureMethod? _signatureMethod;
+  ClientCredentials? _clientCredentials;
+  Credentials? _credentials;
+  String? _method;
+  String? _url;
+  Map<String, String>? _additionalParameters;
 
   AuthorizationHeaderBuilder();
   AuthorizationHeaderBuilder.from(AuthorizationHeaderBuilder other)
@@ -44,7 +44,7 @@ class AuthorizationHeaderBuilder {
     if (_url == null) {
       throw StateError('url is not set');
     }
-    return AuthorizationHeader(_signatureMethod, _clientCredentials,
-        _credentials, _method, _url, _additionalParameters);
+    return AuthorizationHeader(_signatureMethod!, _clientCredentials!,
+        _credentials, _method!, _url!, _additionalParameters);
   }
 }
