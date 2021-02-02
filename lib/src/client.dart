@@ -1,12 +1,13 @@
 library oauth1_client;
 
 import 'dart:async';
+
 import 'package:http/http.dart' as http;
 
-import 'signature_method.dart';
+import 'authorization_header_builder.dart';
 import 'client_credentials.dart';
 import 'credentials.dart';
-import 'authorization_header_builder.dart';
+import 'signature_method.dart';
 
 /// A proxy class describing OAuth 1.0 Authenticated Request
 /// http://tools.ietf.org/html/rfc5849#section-3

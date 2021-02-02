@@ -1,9 +1,9 @@
 library auhthorization_header_builder;
 
 import 'authorization_header.dart';
-import 'signature_method.dart';
 import 'client_credentials.dart';
 import 'credentials.dart';
+import 'signature_method.dart';
 
 /// A builder class for AuthorizationHeader
 class AuthorizationHeaderBuilder {

@@ -1,13 +1,14 @@
 library authorization;
 
 import 'dart:async';
+
 import 'package:http/http.dart' as http;
 
-import 'credentials.dart';
-import 'client_credentials.dart';
-import 'platform.dart';
 import 'authorization_header_builder.dart';
 import 'authorization_response.dart';
+import 'client_credentials.dart';
+import 'credentials.dart';
+import 'platform.dart';
 
 /// A proxy class describing OAuth 1.0 redirection-based authorization.
 /// http://tools.ietf.org/html/rfc5849#section-2
@@ -45,7 +46,7 @@ class Authorization {
     ahb.additionalParameters = additionalParams;
 
     final http.Response res = await _httpClient.post(
-        _platform.temporaryCredentialsRequestURI,
+        Uri.parse(_platform.temporaryCredentialsRequestURI),
         headers: <String, String>{'Authorization': ahb.build().toString()});
 
     if (res.statusCode != 200) {
@@ -86,7 +87,7 @@ class Authorization {
     ahb.additionalParameters = additionalParams;
 
     final http.Response res = await _httpClient.post(
-        _platform.tokenCredentialsRequestURI,
+        Uri.parse(_platform.tokenCredentialsRequestURI),
         headers: <String, String>{'Authorization': ahb.build().toString()});
 
     if (res.statusCode != 200) {
