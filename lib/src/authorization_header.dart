@@ -11,10 +11,10 @@ import 'signature_method.dart';
 class AuthorizationHeader {
   final SignatureMethod _signatureMethod;
   final ClientCredentials _clientCredentials;
-  final Credentials _credentials;
+  final Credentials? _credentials;
   final String _method;
   final String _url;
-  final Map<String, String> _additionalParameters;
+  final Map<String, String>? _additionalParameters;
 
   // static final _uuid = new Uuid();
 
@@ -46,16 +46,16 @@ class AuthorizationHeader {
     params['oauth_consumer_key'] = _clientCredentials.token;
     params['oauth_version'] = '1.0';
     if (_credentials != null) {
-      params['oauth_token'] = _credentials.token;
+      params['oauth_token'] = _credentials!.token;
     }
-    params.addAll(_additionalParameters);
+    params.addAll(_additionalParameters!);
     if (!params.containsKey('oauth_signature')) {
       params['oauth_signature'] = _createSignature(_method, _url, params);
     }
 
     final String authHeader = 'OAuth ' +
         params.keys.map((String k) {
-          return '$k="${Uri.encodeComponent(params[k])}"';
+          return '$k="${Uri.encodeComponent(params[k]!)}"';
         }).join(', ');
     return authHeader;
   }
@@ -147,7 +147,7 @@ class AuthorizationHeader {
     final String consumerSecret =
         Uri.encodeComponent(_clientCredentials.tokenSecret);
     final String tokenSecret = _credentials != null
-        ? Uri.encodeComponent(_credentials.tokenSecret)
+        ? Uri.encodeComponent(_credentials!.tokenSecret)
         : '';
     final String signingKey = '$consumerSecret&$tokenSecret';
 

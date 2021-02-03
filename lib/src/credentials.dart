@@ -16,7 +16,7 @@ class Credentials {
       throw ArgumentError("params doesn't have a key 'oauth_token_secret'");
     }
     return Credentials(
-        parameters['oauth_token'], parameters['oauth_token_secret']);
+        parameters['oauth_token']!, parameters['oauth_token_secret']!);
   }
   factory Credentials.fromJSON(String jstr) {
     return Credentials.fromMap(json.decode(jstr));
